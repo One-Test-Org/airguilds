@@ -3,15 +3,17 @@ Rails.application.routes.draw do
 	get 'admin/terms', to: 'page#terms'
 	get 'admin/privacy_policy', to: 'page#privacy_policy'
 	get 'pricing', to: 'page#pricing'
-	get 'about', to: 'page#about'
+  get 'about', to: 'page#about'
+  get 'home', to: 'page#home'
   if Rails.env.development? || Rails.env.test?
     mount Railsui::Engine, at: "/railsui"
   end
 
   # Inherits from Railsui::PageController#index
   # To overide, add your own page#index view or change to a new root
+  root to: 'page#home'
   # Visit the start page for Rails UI any time at /railsui/start
-  root action: :index, controller: "railsui/page"
+  # root action: :index, controller: "railsui/page"
 
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
